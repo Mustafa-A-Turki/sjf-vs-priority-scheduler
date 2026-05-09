@@ -277,7 +277,7 @@ public class MainFrame extends JFrame {
                 new Object[]{"P3", 4, 1, 3});
 
         inputModel.addRow(
-                new Object[]{"P4", 5, 4, 2});
+                new Object[]{"P4", 5, 8, 2});
 
         idCounter = 5;
     }
@@ -323,13 +323,13 @@ public class MainFrame extends JFrame {
                 new Object[]{"P3", 2, 2, 1});
 
         inputModel.addRow(
-                new Object[]{"P4", 3, 2, 1});
+                new Object[]{"P4", 3,1, 1});
 
         inputModel.addRow(
                 new Object[]{"P5", 4, 2, 1});
 
         inputModel.addRow(
-                new Object[]{"P6", 5, 2, 1});
+                new Object[]{"P6", 5, 1, 1});
 
         idCounter = 7;
     }
