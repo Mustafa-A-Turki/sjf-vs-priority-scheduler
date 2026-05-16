@@ -20,7 +20,6 @@ public class AverageFrame extends JFrame {
         setLayout(new GridLayout(2, 1));
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
-        // ================= SRTF PANEL =================
         JPanel srtfPanel = new JPanel(new GridLayout(3, 1));
         srtfPanel.setBorder(BorderFactory.createTitledBorder("SRTF Averages"));
 
@@ -28,7 +27,6 @@ public class AverageFrame extends JFrame {
         srtfPanel.add(srtfTAT);
         srtfPanel.add(srtfRT);
 
-        // ================= PRIORITY PANEL =================
         JPanel priorityPanel = new JPanel(new GridLayout(3, 1));
         priorityPanel.setBorder(BorderFactory.createTitledBorder("Priority Averages"));
 

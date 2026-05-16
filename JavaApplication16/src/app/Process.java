@@ -17,7 +17,6 @@ public class Process {
         this.remaining = burst;
     }
 
-    // مهم للـ clone
     public Process copy() {
         return new Process(id, arrival, burst, priority);
     }

@@ -18,7 +18,6 @@ public class ComparisonFrame extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
-        // ================= TABLE =================
         String[] cols = {
                 "Metric",
                 "SRTF",
@@ -59,13 +58,11 @@ public class ComparisonFrame extends JFrame {
         table.setRowHeight(30);
         table.setFont(new Font("Arial", Font.PLAIN, 14));
 
-        // ================= FIND BEST =================
         double minWT = Math.min(
                 Math.min(srtfAvg[0], priorityAvg[0]),
                 Math.min(sjfNonAvg[0], priorityNonAvg[0])
         );
 
-        // ================= HIGHLIGHT =================
         DefaultTableCellRenderer renderer =
                 new DefaultTableCellRenderer() {
 
@@ -107,7 +104,6 @@ public class ComparisonFrame extends JFrame {
 
         table.setDefaultRenderer(Object.class, renderer);
 
-        // ================= ANALYSIS =================
         JTextArea analysis = new JTextArea();
 
         analysis.setEditable(false);
@@ -149,7 +145,6 @@ public class ComparisonFrame extends JFrame {
 
         analysis.setFont(new Font("Arial", Font.PLAIN, 15));
 
-        // ================= LAYOUT =================
         setLayout(new BorderLayout(10,10));
 
         add(new JScrollPane(table), BorderLayout.CENTER);

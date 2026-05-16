@@ -1,4 +1,3 @@
-// ================= MainFrame.java =================
 package app;
 
 import javax.swing.*;
@@ -36,13 +35,11 @@ public class MainFrame extends JFrame {
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        // ================= INPUT TABLE =================
         inputModel = new DefaultTableModel(
                 new String[]{"ID","AT","BT","Priority"}, 0);
 
         inputTable = new JTable(inputModel);
 
-        // ================= RESULT TABLES =================
         srtfModel = createModel();
 
         priorityModel = createModel();
@@ -59,7 +56,6 @@ public class MainFrame extends JFrame {
 
         JTable priorityNonTable = new JTable(priorityNonModel);
 
-        // ================= BUTTONS =================
         JButton add = new JButton("Add");
 
         JButton delete = new JButton("Delete");
@@ -80,7 +76,6 @@ public class MainFrame extends JFrame {
         JButton scenarioD =
                 new JButton("Scenario D");
 
-        // ================= ADD =================
         add.addActionListener(e ->
                 inputModel.addRow(
                         new Object[]{
@@ -91,7 +86,6 @@ public class MainFrame extends JFrame {
                         })
         );
 
-        // ================= DELETE =================
         delete.addActionListener(e -> {
 
             int row = inputTable.getSelectedRow();
@@ -100,7 +94,7 @@ public class MainFrame extends JFrame {
 
                 JOptionPane.showMessageDialog(
                         this,
-                        "❌ Select row first!"
+                        "Select row first!"
                 );
 
                 return;
@@ -109,14 +103,13 @@ public class MainFrame extends JFrame {
             inputModel.removeRow(row);
         });
 
-        // ================= DELETE ALL =================
         deleteAll.addActionListener(e -> {
 
             if (inputModel.getRowCount() == 0) {
 
                 JOptionPane.showMessageDialog(
                         this,
-                        "❌ No data!"
+                        "No data!"
                 );
 
                 return;
@@ -145,10 +138,8 @@ public class MainFrame extends JFrame {
             }
         });
 
-        // ================= RUN =================
         run.addActionListener(e -> runSimulation());
 
-        // ================= SCENARIOS =================
         scenarioA.addActionListener(
                 e -> loadScenarioA()
         );
@@ -165,7 +156,6 @@ public class MainFrame extends JFrame {
                 e -> loadScenarioD()
         );
 
-        // ================= TOP PANEL =================
         JPanel top = new JPanel();
 
         top.add(add);
@@ -184,7 +174,6 @@ public class MainFrame extends JFrame {
 
         top.add(scenarioD);
 
-        // ================= RESULT PANELS =================
         JPanel resultPanel =
                 new JPanel(new GridLayout(2,2,10,10));
 
@@ -223,7 +212,6 @@ public class MainFrame extends JFrame {
         add(resultPanel, BorderLayout.CENTER);
     }
 
-    // ================= CREATE TABLE MODEL =================
     DefaultTableModel createModel() {
 
         return new DefaultTableModel(
@@ -242,7 +230,6 @@ public class MainFrame extends JFrame {
         };
     }
 
-    // ================= PANEL =================
     JPanel createPanel(String title, JTable table) {
 
         JPanel panel = new JPanel(new BorderLayout());
@@ -261,8 +248,6 @@ public class MainFrame extends JFrame {
         return panel;
     }
 
-    // ================= SCENARIO A =================
-    // Basic mixed workload
     void loadScenarioA() {
 
         inputModel.setRowCount(0);
@@ -282,17 +267,13 @@ public class MainFrame extends JFrame {
         idCounter = 5;
     }
 
-    // ================= SCENARIO B =================
-    // Conflict between burst time and priority
     void loadScenarioB() {
 
         inputModel.setRowCount(0);
 
-        // short burst but low priority
         inputModel.addRow(
                 new Object[]{"P1", 0, 2, 5});
 
-        // long burst but high priority
         inputModel.addRow(
                 new Object[]{"P2", 0, 10, 1});
 
@@ -305,17 +286,13 @@ public class MainFrame extends JFrame {
         idCounter = 5;
     }
 
-    // ================= SCENARIO C =================
-    // Fairness / starvation-sensitive case
     void loadScenarioC() {
 
         inputModel.setRowCount(0);
 
-        // long process
         inputModel.addRow(
                 new Object[]{"P1", 0, 20, 5});
 
-        // many short processes
         inputModel.addRow(
                 new Object[]{"P2", 1, 2, 1});
 
@@ -334,42 +311,35 @@ public class MainFrame extends JFrame {
         idCounter = 7;
     }
 
-    // ================= SCENARIO D =================
-    // Validation case
     void loadScenarioD() {
 
         inputModel.setRowCount(0);
 
-        // duplicate id
         inputModel.addRow(
                 new Object[]{"P1", 0, 5, 1});
 
         inputModel.addRow(
                 new Object[]{"P1", 2, 3, 2});
 
-        // negative arrival time
         inputModel.addRow(
                 new Object[]{"P3", -1, 4, 1});
 
-        // zero burst time
         inputModel.addRow(
                 new Object[]{"P4", 3, 0, 2});
 
-        // negative priority
         inputModel.addRow(
                 new Object[]{"P5", 4, 2, -1});
 
         idCounter = 6;
     }
 
-    // ================= SIMULATION =================
     void runSimulation() {
 
         if (inputModel.getRowCount() == 0) {
 
             JOptionPane.showMessageDialog(
                     this,
-                    "❌ No processes found!"
+                    "No processes found!"
             );
 
             return;
@@ -391,7 +361,7 @@ public class MainFrame extends JFrame {
 
                 JOptionPane.showMessageDialog(
                         this,
-                        "❌ Invalid or duplicate ID!"
+                        "Invalid or duplicate ID!"
                 );
 
                 return;
@@ -420,7 +390,7 @@ public class MainFrame extends JFrame {
 
                     JOptionPane.showMessageDialog(
                             this,
-                            "❌ Invalid values!"
+                            "Invalid values!"
                     );
 
                     return;
@@ -434,14 +404,13 @@ public class MainFrame extends JFrame {
 
                 JOptionPane.showMessageDialog(
                         this,
-                        "❌ Numbers only!"
+                        "Numbers only!"
                 );
 
                 return;
             }
         }
 
-        // ================= CLONES =================
         List<Process> srtfList =
                 cloneList(original);
 
@@ -454,7 +423,6 @@ public class MainFrame extends JFrame {
         List<Process> priorityNonList =
                 cloneList(original);
 
-        // ================= RUN =================
         SRTFScheduler.schedule(srtfList);
 
         PriorityScheduler.schedule(priorityList);
@@ -465,7 +433,6 @@ public class MainFrame extends JFrame {
                 priorityNonList
         );
 
-        // ================= CLEAR =================
         srtfModel.setRowCount(0);
 
         priorityModel.setRowCount(0);
@@ -474,7 +441,6 @@ public class MainFrame extends JFrame {
 
         priorityNonModel.setRowCount(0);
 
-        // ================= FILL TABLES =================
         fillTable(srtfModel, srtfList);
 
         fillTable(priorityModel, priorityList);
@@ -483,7 +449,6 @@ public class MainFrame extends JFrame {
 
         fillTable(priorityNonModel, priorityNonList);
 
-        // ================= AVERAGES =================
         double[] srtfAvg =
                 MetricsCalculator.calculateAverages(
                         srtfList
@@ -504,7 +469,6 @@ public class MainFrame extends JFrame {
                         priorityNonList
                 );
 
-        // ================= COMPARISON =================
         new ComparisonFrame(
                 srtfAvg,
                 priorityAvg,
@@ -512,7 +476,6 @@ public class MainFrame extends JFrame {
                 priorityNonAvg
         ).setVisible(true);
 
-        // ================= GANTT =================
         createGantt(
                 "SRTF Gantt",
                 SRTFScheduler.gantt
@@ -534,7 +497,6 @@ public class MainFrame extends JFrame {
         );
     }
 
-    // ================= FILL TABLE =================
     void fillTable(
             DefaultTableModel model,
             List<Process> list
@@ -547,7 +509,6 @@ public class MainFrame extends JFrame {
         }
     }
 
-    // ================= GANTT WINDOW =================
     void createGantt(
             String title,
             java.util.List<String> gantt
@@ -572,7 +533,6 @@ public class MainFrame extends JFrame {
         frame.setVisible(true);
     }
 
-    // ================= CLONE =================
     List<Process> cloneList(List<Process> list) {
 
         List<Process> copy = new ArrayList<>();
@@ -585,7 +545,6 @@ public class MainFrame extends JFrame {
         return copy;
     }
 
-    // ================= MAIN =================
     public static void main(String[] args) {
 
         SwingUtilities.invokeLater(() ->

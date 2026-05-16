@@ -13,7 +13,6 @@ public class GanttPanel extends JPanel {
 
         this.timeline = timeline;
 
-        // نحسب الـ width الحقيقي
         int totalWidth = 60;
 
         if (timeline != null && !timeline.isEmpty()) {
@@ -34,10 +33,8 @@ public class GanttPanel extends JPanel {
                 }
             }
 
-            // كل unit = 45 px
             totalWidth += timeline.size() * 45;
 
-            // padding زيادة
             totalWidth += 300;
         }
 
@@ -87,22 +84,18 @@ public class GanttPanel extends JPanel {
 
             int width = duration * 45;
 
-            // لون البلوك
             g2.setColor(new Color(173, 216, 230));
             g2.fillRect(x, y, width, height);
 
-            // border
             g2.setColor(Color.BLACK);
             g2.drawRect(x, y, width, height);
 
-            // process id
             g2.drawString(
                     blocks.get(i),
                     x + width / 2 - 10,
                     y + 35
             );
 
-            // start time
             g2.drawString(
                     String.valueOf(times.get(i)),
                     x,
@@ -112,7 +105,6 @@ public class GanttPanel extends JPanel {
             x += width;
         }
 
-        // النهاية
         g2.drawString(
                 String.valueOf(times.get(times.size() - 1)),
                 x,

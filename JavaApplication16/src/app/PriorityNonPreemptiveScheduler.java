@@ -36,7 +36,6 @@ public class PriorityNonPreemptiveScheduler {
                 }
             }
 
-            // CPU Idle
             if (best == null) {
 
                 gantt.add("Idle");
@@ -46,11 +45,9 @@ public class PriorityNonPreemptiveScheduler {
                 continue;
             }
 
-            // Response Time
             if (best.firstResponseTime == -1)
                 best.firstResponseTime = time;
 
-            // Execute بالكامل
             while (best.remaining > 0) {
 
                 best.remaining--;

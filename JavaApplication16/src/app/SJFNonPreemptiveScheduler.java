@@ -36,7 +36,6 @@ public class SJFNonPreemptiveScheduler {
                 }
             }
 
-            // CPU Idle
             if (shortest == null) {
 
                 gantt.add("Idle");
@@ -44,11 +43,9 @@ public class SJFNonPreemptiveScheduler {
                 continue;
             }
 
-            // Response Time
             if (shortest.firstResponseTime == -1)
                 shortest.firstResponseTime = time;
 
-            // Execute بالكامل
             while (shortest.remaining > 0) {
 
                 shortest.remaining--;

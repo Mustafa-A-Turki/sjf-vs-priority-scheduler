@@ -4,7 +4,6 @@ import java.util.List;
 
 public class MetricsCalculator {
 
-    // ================= TABLE DATA =================
     public static Object[][] calculate(List<Process> list) {
 
         Object[][] data = new Object[list.size()][8];
@@ -31,7 +30,6 @@ public class MetricsCalculator {
         return data;
     }
 
-    // ================= AVERAGES =================
     public static double[] calculateAverages(List<Process> list) {
 
         double totalWT = 0;
